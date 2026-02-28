@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Tesseramento 2026",
+    "date": "2026-01-01",
+    "time": "Sempre aperto",
+    "location": "Sede SOMSI",
+    "category": "Soci",
+    "description": "È partito il tesseramento 2026! Siamo fieri di presentare la nuova tessera artistica, un simbolo di appartenenza che unisce la nostra storia alla bellezza dell'arte.",
+    "image": "images/tessera_2026.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Mercatino di Natale",
+    "date": "2025-12-15",
+    "time": "09:00",
+    "location": "Centro Storico",
+    "category": "Sociale",
+    "description": "Un momento di gioia e condivisione al Mercatino di Natale di Gozzano. Le nostre volontarie portano il calore della SOMSI tra la gente.",
+    "image": "images/mercatino_natale.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Spettacolo Teatrale: PLUTO",
+    "date": "2026-01-31",
+    "time": "21:00",
+    "location": "Salone SOMSI",
+    "category": "Cultura",
+    "description": "Rassegna 'BIS! 2 laghi 2 palchi'. Adattamento del Pluto di Aristofane a cura de I Sacchi di Sabbia. Un evento imperdibile di teatro classico e contemporaneo.",
+    "image": "images/teatro_pluto.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Gruppo di Cammino",
+    "date": "2026-01-18",
+    "time": "14:00",
+    "location": "Ritrovo Teatro SOMSI",
+    "category": "Benessere",
+    "description": "Alla scoperta del territorio e dei 5 sensi. Una camminata adatta a tutti in compagnia di una guida esperta per vivere il paesaggio in salute.",
+    "image": "images/gruppo_cammino.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Conferenza: Le Reliquie Raccontano",
+    "date": "2026-01-09",
+    "time": "21:00",
+    "location": "Salone SOMSI",
+    "category": "Cultura",
+    "description": "Nell'ambito della Festa Patronale di San Giuliano, un incontro per scoprire la storia e la fede attraverso i segni della tradizione cristiana.",
+    "image": "images/conferenza_reliquie.jpg"
+  },
+{
+  "id": 6,
+  "title": "Riapertura Sede Storica",
+  "date": "2025-11-14",
+  "time": "19:00",
+  "location": "Piazza San Giuliano",
+  "category": "Istituzionale",
+  "description": "Un momento storico per la nostra comunità: la riapertura della sede in Piazza San Giuliano. Una serata di festa con apericena e musica per celebrare il ritorno nel cuore di Gozzano.",
+  "image": "images/inaugurazione_sede.jpg"
+}
+]
