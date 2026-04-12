@@ -310,7 +310,7 @@
         <nav id="nav">
           <button class="navlink" data-nav="home">Home</button>
           <button class="navlink" data-nav="eventi">Eventi</button>
-          <button class="navlink" data-nav="chi-siamo">Chi siamo</button>
+          <button class="navlink" data-nav="chi-siamo"></button>
           <button class="navlink" data-nav="mutualita">Mutualità</button>
           <button class="navlink" data-nav="contatti">Contatti</button>
           <button class="navlink" data-nav="news">News</button>
@@ -461,6 +461,51 @@
           <div class="role" style="grid-column:1 / -1"><div class="r">Consiglieri</div><div class="w">Mario Colombo • Maria Diana • Giada Lombardi • Maria Antonietta Mainardi • Mario Natale Rinaldi • Angela Luciana Vinzia</div></div>
         </div>
       </div>
+
+<!-- Inserisci questo blocco nella sezione "Chi siamo" dove vuoi che compaia il PDF -->
+<div class="box" style="margin-top:16px;">
+  <strong>Statuto SOMSI Gozzano (PDF)</strong>
+  <p class="muted" style="margin:6px 0 10px">Leggi online o scarica lo statuto.</p>
+
+  <!-- Link: apre in nuova scheda -->
+  <a href="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf" target="_blank" rel="noopener" class="btn primary" style="display:inline-block;">
+    Apri PDF (nuova scheda)
+  </a>
+
+  <!-- Link: forza download (fallback) -->
+  <a href="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf" download class="btn" style="display:inline-block; margin-left:8px; background:#fff; border:1px solid var(--line);">
+    Scarica PDF
+  </a>
+
+  <!-- Bottone per anteprima inline -->
+  <button id="toggleStatutoPreview" class="btn" style="margin-left:8px;">Mostra anteprima</button>
+
+  <!-- Anteprima (inizialmente nascosta) -->
+  <div id="statutoPreview" style="display:none; margin-top:14px;">
+    <iframe src="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf" width="100%" height="520" style="border:1px solid var(--line); border-radius:10px;">
+      Il tuo browser non supporta l'anteprima PDF. <a href="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf" target="_blank">Apri il PDF</a>
+    </iframe>
+  </div>
+</div>
+
+<script>
+  // JS minimo per toggle anteprima
+  document.addEventListener('click', function(e){
+    if(e.target && e.target.id === 'toggleStatutoPreview'){
+      const preview = document.getElementById('statutoPreview');
+      const btn = e.target;
+      if(!preview) return;
+      if(preview.style.display === 'none' || preview.style.display === ''){
+        preview.style.display = 'block';
+        btn.textContent = 'Nascondi anteprima';
+      } else {
+        preview.style.display = 'none';
+        btn.textContent = 'Mostra anteprima';
+      }
+    }
+  });
+</script>
+  
     </section>
 
     <!-- MUTUALITA -->
