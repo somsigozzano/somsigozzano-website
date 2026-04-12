@@ -58,5 +58,15 @@
   "category": "Istituzionale",
   "description": "Un momento storico per la nostra comunità: la riapertura della sede in Piazza San Giuliano. Una serata di festa con apericena e musica per celebrare il ritorno nel cuore di Gozzano.",
   "image": "images/inaugurazione_sede.jpg"
-}
-]
+  },
+{
+"id": 7,
+  "title": "Convocazione Assemblea dei soci 2026",
+  "date": "2026-04-26",
+  "time": "17:30",
+  "location": "Piazza San Giuliano",
+  "category": "Istituzionale",
+  "description": "Come ogni anno è arrivato il momento della convocazione dell'Assemblea generale dei Soci. Vi aspettiamo per discutere l'ordine del giorno e festeggiare insieme la chiusura della stagione 2025-2026 della Somsi Gozzano",
+  "image": "images/convocazione assemblea 2026.jpg"
+  }
+  
