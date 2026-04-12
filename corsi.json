@@ -1,0 +1,23 @@
+[
+  {
+    "id": "2026-pittura-base",
+    "title": "Corso di Pittura (base)",
+    "description": "Laboratorio settimanale di pittura ad olio per principianti. Materiali inclusi. Iscrizioni in sede.",
+    "image": "images/corso_pittura.jpg",
+    "status": "attivo"
+  },
+  {
+    "id": "2026-yoga-mattina",
+    "title": "Yoga del mattino",
+    "description": "Corso di yoga dolce il martedì e il giovedì mattina, adatto a tutte le età.",
+    "image": "",
+    "status": "attivo"
+  },
+  {
+    "id": "2025-fotografia-avanzato",
+    "title": "Fotografia avanzata",
+    "description": "Corso serale, tecniche avanzate e laboratorio pratico. Temporaneamente sospeso.",
+    "image": "images/corso_foto.jpg",
+    "status": "sospeso"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "2026-04-01-inaugurazione",
+    "title": "Inaugurazione nuova sede",
+    "text": "Sabato 1 aprile abbiamo inaugurato la nuova sede con un rinfresco aperto a tutti i soci. Foto e dettagli nella pagina dedicata.",
+    "image": "images/inaugurazione_sede.jpg",
+    "date": "2026-04-01"
+  },
+  {
+    "id": "2026-03-15-orari",
+    "title": "Nuovi orari di segreteria",
+    "text": "A partire dal 15 marzo la segreteria sarà aperta anche il giovedì dalle 17:00 alle 19:00.",
+    "image": "",
+    "date": "2026-03-15"
+  },
+  {
+    "id": "2026-02-10-borsa-studio",
+    "title": "Borse di studio 2026",
+    "text": "Sono aperte le candidature per le borse di studio. Scarica il bando dal link in basso o contattaci per maggiori informazioni.",
+    "image": "images/borse_studio.jpg",
+    "date": "2026-02-10"
+  }
+]
