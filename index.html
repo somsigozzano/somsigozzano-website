@@ -668,6 +668,102 @@
       updateKpi();
     }
 
+// ---- News & Corsi: caricamento e normalizzazione ----
+let NEWS = [];
+let CORSI = [];
+
+async function loadNews(){
+  try{
+    const res = await fetch('news.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('news.json non trovato');
+    const data = await res.json();
+    NEWS = Array.isArray(data) ? data : (data.news || []);
+  }catch(err){
+    // fallback demo
+    NEWS = [
+      {
+        id: "2026-04-01-inaugurazione",
+        title: "Inaugurazione nuova sede",
+        text: "Sabato 1 aprile abbiamo inaugurato la nuova sede con un rinfresco aperto a tutti i soci.",
+        image: "images/inaugurazione_sede.jpg",
+        date: "2026-04-01"
+      },
+      {
+        id: "2026-03-15-orari",
+        title: "Nuovi orari di segreteria",
+        text: "A partire dal 15 marzo la segreteria sarà aperta anche il giovedì dalle 17:00 alle 19:00.",
+        image: "",
+        date: "2026-03-15"
+      }
+    ];
+    console.warn('Uso dati demo per news perché:', err);
+  }
+
+  // normalize
+  NEWS = NEWS.map((n, idx) => ({
+    id: n.id ?? ('news-' + (idx+1)),
+    title: n.title ?? 'News',
+    text: n.text ?? '',
+    image: n.image ?? '',
+    date: n.date ?? ''
+  }));
+
+  // renderizza preview e lista completa (funzioni che devi avere già nel file)
+  if(typeof renderNewsPreview === 'function') renderNewsPreview();
+  if(typeof renderNewsAll === 'function') renderNewsAll();
+}
+
+async function loadCorsi(){
+  try{
+    const res = await fetch('corsi.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('corsi.json non trovato');
+    const data = await res.json();
+    CORSI = Array.isArray(data) ? data : (data.corsi || []);
+  }catch(err){
+    // fallback demo
+    CORSI = [
+      {
+        id: "2026-pittura-base",
+        title: "Corso di Pittura (base)",
+        description: "Laboratorio settimanale di pittura ad olio per principianti.",
+        image: "images/corso_pittura.jpg",
+        status: "attivo"
+      },
+      {
+        id: "2026-yoga-mattina",
+        title: "Yoga del mattino",
+        description: "Corso di yoga dolce il martedì e il giovedì mattina.",
+        image: "",
+        status: "attivo"
+      }
+    ];
+    console.warn('Uso dati demo per corsi perché:', err);
+  }
+
+  // normalize
+  CORSI = CORSI.map((c, idx) => ({
+    id: c.id ?? ('corso-' + (idx+1)),
+    title: c.title ?? 'Corso',
+    description: c.description ?? '',
+    image: c.image ?? '',
+    status: c.status ?? 'attivo'
+  }));
+
+  // renderizza preview e lista completa (funzioni che devi avere già nel file)
+  if(typeof renderCorsiPreview === 'function') renderCorsiPreview();
+  if(typeof renderCorsiAll === 'function') renderCorsiAll();
+}
+// ---- Init: avvia tutti i loader in sequenza ----
+async function init(){
+  await loadEvents();   // carica e renderizza eventi
+  await loadNews();     // carica e renderizza news
+  await loadCorsi();    // carica e renderizza corsi
+}
+
+// Avvia init quando la pagina è pronta
+document.addEventListener('DOMContentLoaded', init);
+    
+    
     function updateKpi(){
       const now = new Date();
       const upcoming = EVENTS.filter(e => new Date(e.date+'T00:00:00') >= new Date(now.toDateString()));
@@ -757,7 +853,7 @@
     const initial = (location.hash || '#home').replace('#','');
     showPage(['home','eventi','chi-siamo','mutualita','contatti'].includes(initial) ? initial : 'home');
 
-    loadEvents();
+  // NOTA: non chiamiamo più loadEvents() qui perché init() viene eseguita su DOMContentLoaded
   </script>
 </body>
 </html>
