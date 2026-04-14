@@ -68,5 +68,25 @@
   "category": "Istituzionale",
   "description": "Come ogni anno è arrivato il momento della convocazione dell'Assemblea generale dei Soci. Vi aspettiamo per discutere l'ordine del giorno e festeggiare insieme la chiusura della stagione 2025-2026 della Somsi Gozzano",
   "image":"images/convocazione_assemblea_2026.jpeg"
-  }
+  } ,
+ {
+  "id": 8,
+  "title": "6° Anniversario Radio Space Music",
+  "date": "2026-04-25",
+  "time": "21:00",
+  "location": "Piazza San Giuliano",
+  "category": "Sociale",
+  "description": "Una serata da non perdere per festeggiare la nostra radio preferita!",
+  "image": "images/festa_radiospacemusic.jpeg"
+  }, 
+   {
+  "id": 9,
+  "title": "Apericena alla Somsi",
+  "date": "2026-04-26",
+  "time": "19:00",
+  "location": "Piazza San Giuliano",
+  "category": "Sociale",
+  "description": "In occasione dell'assemblea dei soci Somsi apre le porte a tutti con un'apericena e tante musica, per festeggiare la fine di questa stagione mozzafiato",
+  "image": "images/apericina_aprile.jpeg"
+  } 
 ]
