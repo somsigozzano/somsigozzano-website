@@ -953,45 +953,79 @@ function renderNewsAllFromArray(data){
       `;
     }
 
-    function renderHome(){
-      const sorted = [...EVENTS].sort((a,b) => a.date.localeCompare(b.date));
-      const now = new Date();
-      const upcoming = sorted.filter(e => new Date(e.date+'T00:00:00') >= new Date(now.toDateString()));
-      const top = upcoming.slice(0,6);
-      const homeCardsEl = $('#homeCards');
-      if(homeCardsEl) homeCardsEl.innerHTML = top.map(eventCardHTML).join('');
-    }
+   function renderHome(){
+  const sorted = [...EVENTS].sort((a,b) => a.date.localeCompare(b.date));
+  const now = new Date();
+  const upcoming = sorted.filter(e => new Date(e.date+'T00:00:00') >= new Date(now.toDateString()));
+  const top = upcoming.slice(0,6);
+  const homeCardsEl = $('#homeCards');
+  if(!homeCardsEl) return;
 
-    function renderEventList(filter){
-      const now = new Date();
-      const isUpcoming = (e) => new Date(e.date+'T00:00:00') >= new Date(now.toDateString());
-      let list = [...EVENTS].sort((a,b) => a.date.localeCompare(b.date));
-      if(filter === 'upcoming') list = list.filter(isUpcoming);
-      if(filter === 'past') list = list.filter(e => !isUpcoming(e)).sort((a,b)=> b.date.localeCompare(a.date));
+  // genera le card con attribute data-id per il click
+  homeCardsEl.innerHTML = top.map(e => `
+    <article class="card home-event" data-id="${e.id}" role="button" aria-label="Apri evento ${escapeHtml(e.title)}" style="cursor:pointer; margin-bottom:12px;">
+      <div class="cardImg" style="${e.image ? `background-image:url('${escapeAttr(e.image)}');` : ''}"></div>
+      <div class="cardBody">
+        <div class="date">${formatShortIT(e.date)}</div>
+        <div class="cardTitle">${escapeHtml(e.title)}</div>
+        <p class="cardDesc">${escapeHtml(truncate(e.description, 110))}</p>
+        <div class="meta">📍 ${escapeHtml(e.location || '—')}</div>
+      </div>
+    </article>
+  `).join('');
 
-      if(list.length === 0){
-        $('#eventList').innerHTML = `<div class="box"><strong>Nessun evento da mostrare.</strong><div class="muted" style="margin-top:6px">Aggiungi eventi in <code>events.json</code>.</div></div>`;
-        return;
-      }
+  // Attacca i click handler alle card appena create
+  $$('.home-event').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.id;
+      // Apri la pagina Eventi
+      showPage('eventi');
+      // Aggiorna l'URL hash (opzionale)
+      history.replaceState(null, '', '#eventi');
+      // Assicurati che la lista Eventi sia renderizzata (se necessario)
+      renderEventList(window.currentEventFilter || 'upcoming');
+      // Scorri verso l'elemento corrispondente dopo un piccolo ritardo
+      setTimeout(() => {
+        const el = document.getElementById('event-' + id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 180);
+    });
+  });
+}
 
-      $('#eventList').innerHTML = list.map(e => {
-        const badge = filter === 'past' ? 'Passato' : (isUpcoming(e) ? 'Prossimo' : 'Passato');
-        const img = e.image ? `<img src="${escapeAttr(e.image)}" alt="${escapeAttr(e.title)}"/>` : `<img src="data:image/svg+xml;utf8,${encodeURIComponent(svgPlaceholder(e.title))}" alt="${escapeAttr(e.title)}"/>`;
-        return `
-          <article class="eventRow">
-            <div class="eventImg">
-              ${img}
-              <div class="badge">${badge}</div>
-            </div>
-            <div class="eventBody">
-              <div class="eventMeta">📅 ${formatDateIT(e.date)} ${e.time ? ` • ⏰ ${escapeHtml(e.time)}` : ''} ${e.location ? ` • 📍 ${escapeHtml(e.location)}` : ''}</div>
-              <div class="eventTitle">${escapeHtml(e.title)}</div>
-              <p>${escapeHtml(e.description)}</p>
-            </div>
-          </article>
-        `;
-      }).join('');
-    }
+function renderEventList(filter){
+  const now = new Date();
+  const isUpcoming = (e) => new Date(e.date+'T00:00:00') >= new Date(now.toDateString());
+  let list = [...EVENTS].sort((a,b) => a.date.localeCompare(b.date));
+  if(filter === 'upcoming') list = list.filter(isUpcoming);
+  if(filter === 'past') list = list.filter(e => !isUpcoming(e)).sort((a,b)=> b.date.localeCompare(a.date));
+
+  // salva filtro corrente
+  window.currentEventFilter = filter;
+
+  if(list.length === 0){
+    $('#eventList').innerHTML = `<div class="box"><strong>Nessun evento da mostrare.</strong><div class="muted" style="margin-top:6px">Aggiungi eventi in <code>events.json</code>.</div></div>`;
+    return;
+  }
+
+  $('#eventList').innerHTML = list.map(e => {
+    const badge = filter === 'past' ? 'Passato' : (isUpcoming(e) ? 'Prossimo' : 'Passato');
+    const img = e.image ? `<img src="${escapeAttr(e.image)}" alt="${escapeAttr(e.title)}"/>` : `<img src="data:image/svg+xml;utf8,${encodeURIComponent(svgPlaceholder(e.title))}" alt="${escapeAttr(e.title)}"/>`;
+    return `
+      <article id="event-${e.id}" class="eventRow" tabindex="0" aria-labelledby="title-event-${e.id}">
+        <div class="eventImg">
+          ${img}
+          <div class="badge">${badge}</div>
+        </div>
+        <div class="eventBody">
+          <div class="eventMeta">📅 ${formatDateIT(e.date)} ${e.time ? ` • ⏰ ${escapeHtml(e.time)}` : ''} ${e.location ? ` • 📍 ${escapeHtml(e.location)}` : ''}</div>
+          <div id="title-event-${e.id}" class="eventTitle">${escapeHtml(e.title)}</div>
+          <p>${escapeHtml(e.description)}</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
 
     function truncate(s, n){
       s = (s||'').trim();
