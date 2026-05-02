@@ -88,5 +88,15 @@
   "category": "Sociale",
   "description": "In occasione dell'assemblea dei soci Somsi apre le porte a tutti con un'apericena e tante musica, per festeggiare la fine di questa stagione mozzafiato",
   "image": "images/apericena_aprile.jpeg"
-  } 
+  },
+   {
+  "id": 10,
+  "title": "Pensione O'marechiaro",
+  "date": "2026-05-09",
+  "time": "21:00",
+  "location": "Piazza San Giuliano",
+  "category": "Cultura",
+  "description": "La Compagnia I Falsi d'Autore vi presenterà uno spettacolo davvero speciale. Un evento organizzato in collaborazione con il Comune di Gozzano",
+  "image": "images/teatro_maggio.jpeg"
+  }     
 ]
