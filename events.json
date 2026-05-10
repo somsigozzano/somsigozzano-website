@@ -98,5 +98,15 @@
   "category": "Cultura",
   "description": "La Compagnia I Falsi d'Autore vi presenterà uno spettacolo davvero speciale. Un evento organizzato in collaborazione con il Comune di Gozzano",
   "image": "images/teatro_maggio.jpeg"
-  }     
+  } ,  
+   {
+  "id": 11,
+  "title": "Prova la danza creativa",
+  "date": "2026-05-30",
+  "time": "15:00",
+  "location": "Piazza San Giuliano",
+  "category": "Benessere",
+  "description": "Un pomeriggio per toccare con mano i benefici della danza creativa e non solo. Una piccola anticipazione del nuovo corso di danza terapia che si terrà presso Somsi Gozzano",
+  "image": "images/danza_creativa.jpeg"
+  } ,  
 ]
