@@ -265,7 +265,7 @@
       color:var(--accent2);
       font-weight:900;
     }
-    .mapBox{border:1px solid var(--line); background:var(--soft); border-radius:var(--radius); min-height:320px; display:grid; place-items:center; color:var(--muted); font-weight:800}
+    .mapBox{border:1px dashed var(--line); background:var(--soft); border-radius:var(--radius); min-height:320px; display:grid; place-items:center; color:var(--muted); font-weight:800}
 
     footer{
       border-top:1px solid var(--line);
@@ -287,7 +287,7 @@
     [data-page]{display:none}
     [data-page].active{display:block; padding-bottom: 40px}
 
-    /* Accessibility /
+    /* Accessibility */
     .sr{position:absolute; left:-9999px}
   </style>
 </head>
@@ -310,7 +310,6 @@
         <nav id="nav">
           <button class="navlink" data-nav="home">Home</button>
           <button class="navlink" data-nav="eventi">Eventi</button>
-          <button class="navlink" data-nav="documenti">Documenti</button>
           <button class="navlink" data-nav="chi-siamo">Chi siamo</button>
           <button class="navlink" data-nav="mutualita">Mutualità</button>
           <button class="navlink" data-nav="contatti">Contatti</button>
@@ -432,51 +431,6 @@
       <div id="eventList"></div>
     </section>
 
-    <!-- DOCUMENTI (nuova pagina centrale per tutti i PDF) -->
-    <section data-page="documenti" class="page">
-      <div class="container" style="max-width:1100px; margin: 28px auto; padding: 0 16px;">
-        <h2 style="margin-top:0;">Documenti</h2>
-        <div class="underline" style="width:56px; margin-bottom:12px"></div>
-        <p class="muted" style="margin-bottom:12px">Elenco ufficiale dei documenti: apri in nuova scheda, scarica o visualizza l'anteprima.</p>
-
-        <ul id="documentList" style="list-style:none; padding:0; margin:0 0 12px;">
-          <li style="margin-bottom:14px;">
-            <strong>Convenzione ANPAS Cusio Sud Ovest</strong><br>
-            <a href="PDF/anpas_convenzione.pdf" target="_blank" rel="noopener" class="btn">Apri (nuova scheda)</a>
-            <a href="PDF/anpas_convenzione.pdf" download class="btn" style="margin-left:8px;">Scarica</a>
-            <button class="btn preview-btn" data-src="PDF/anpas_convenzione.pdf" style="margin-left:8px;">Mostra anteprima</button>
-            <div class="muted" style="margin-top:6px; font-size:13px;">Convenzione con ANPAS per collaborazioni locali.</div>
-          </li>
-
-          <li style="margin-bottom:14px;">
-            <strong>Regolamento Mutualità</strong><br>
-            <a href="PDF/regolamento_mutualita_2023.pdf" target="_blank" rel="noopener" class="btn">Apri (nuova scheda)</a>
-            <a href="PDF/regolamento_mutualita_2023.pdf" download class="btn" style="margin-left:8px;">Scarica</a>
-            <button class="btn preview-btn" data-src="PDF/regolamento_mutualita_2023.pdf" style="margin-left:8px;">Mostra anteprima</button>
-            <div class="muted" style="margin-top:6px; font-size:13px;">Regole e modalità per il servizio di mutualità.</div>
-          </li>
-
-          <li style="margin-bottom:14px;">
-            <strong>Bilancio 2025 (Definitivo)</strong><br>
-            <a href="PDF/bilancio_somsi_2025.pdf" target="_blank" rel="noopener" class="btn">Apri (nuova scheda)</a>
-            <a href="PDF/bilancio_somsi_2025.pdf" download class="btn" style="margin-left:8px;">Scarica</a>
-            <button class="btn preview-btn" data-src="PDF/bilancio_somsi_2025.pdf" style="margin-left:8px;">Mostra anteprima</button>
-            <div class="muted" style="margin-top:6px; font-size:13px;">Bilancio sociale e finanziario 2025.</div>
-          </li>
-        </ul>
-
-        <!-- Anteprima unica (lazy-load) -->
-        <div id="docPreview" style="display:none; margin-top:18px;">
-          <div style="position:relative; width:100%; padding-top:56.25%;">
-            <iframe id="docIframe" data-src="" style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--line); border-radius:10px;" aria-label="Anteprima documento"></iframe>
-          </div>
-          <div style="margin-top:10px;">
-            <button id="closePreview" class="btn">Chiudi anteprima</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CHI SIAMO -->
     <section data-page="chi-siamo">
       <div class="sectionHead">
@@ -504,4 +458,615 @@
           <div class="role"><div class="r">Vicepresidenti</div><div class="w">Antonio D’Emidio<br/>Roberto Ruga</div></div>
           <div class="role"><div class="r">Tesoriera</div><div class="w">Anna Mentasti</div></div>
           <div class="role"><div class="r">Segretario</div><div class="w">Matteo Tosi</div></div>
-          <div class="role" style="grid-column
+          <div class="role" style="grid-column:1 / -1"><div class="r">Consiglieri</div><div class="w">Mario Colombo • Maria Diana • Giada Lombardi • Maria Antonietta Mainardi • Mario Natale Rinaldi • Angela Luciana Vinzia</div></div>
+        </div>
+      </div>
+
+<div class="box" style="margin-top:16px;">
+  <strong>Statuto SOMSI Gozzano (PDF)</strong>
+  <p class="muted" style="margin:6px 0 10px">Leggi online o scarica lo statuto.</p>
+
+  <a href="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf" target="_blank" rel="noopener" class="btn primary" style="display:inline-block;">
+    Apri PDF (nuova scheda)
+  </a>
+
+  <a href="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf" download class="btn" style="display:inline-block; margin-left:8px; background:#fff; border:1px solid var(--line);">
+    Scarica PDF
+  </a>
+
+  <button id="toggleStatutoPreview" class="btn" style="margin-left:8px;">Mostra anteprima</button>
+
+  <div id="statutoPreview" style="display:none; margin-top:14px;">
+    <div class="pdfWrapper" style="position:relative; width:100%; padding-top:56.25%;">
+      <iframe id="statutoIframe"
+              data-src="PDF/STATUTO_SOMSI_GOZZANO_2023.pdf"
+              style="position:absolute; top:0; left:0; width:100%; height:100%; border:1px solid var(--line); border-radius:10px;"
+              allowfullscreen
+              aria-label="Anteprima statuto SOMSI"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('click', function(e){
+    if(e.target && e.target.id === 'toggleStatutoPreview'){
+      const preview = document.getElementById('statutoPreview');
+      const btn = e.target;
+      const iframe = document.getElementById('statutoIframe');
+      if(!preview || !iframe) return;
+
+      // lazy-load: aggiungi src solo al primo click
+      if(!iframe.getAttribute('src') || iframe.getAttribute('src') === ''){
+        const src = iframe.dataset.src;
+        if(src) iframe.setAttribute('src', src);
+      }
+
+      // toggle visibilità
+      if(preview.style.display === 'none' || preview.style.display === ''){
+        preview.style.display = 'block';
+        btn.textContent = 'Nascondi anteprima';
+        setTimeout(() => preview.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+      } else {
+        preview.style.display = 'none';
+        btn.textContent = 'Mostra anteprima';
+      }
+    }
+  });
+</script>
+
+
+  
+    </section>
+
+    <!-- MUTUALITA -->
+    <section data-page="mutualita">
+      <div class="sectionHead">
+        <div>
+          <h3 class="h2">Mutualità</h3>
+          <div class="underline"></div>
+        </div>
+      </div>
+<img src="images/mutualita.jpg" alt="Mutualità SOMSI" style="width:100%; max-width:600px; border-radius:18px; margin:20px 0; box-shadow: 0 10px 30px rgba(17,24,39,.08);">
+
+<div class="box">
+      <div class="box">
+        <strong>Novità 2024 — Mutualità Mediata</strong>
+        <p style="margin:10px 0 0">
+          Nel 2024 abbiamo firmato un accordo con la <strong>SOMS CESARE POZZO</strong> per iniziare un progetto di Mutualità Mediata.
+          Ogni socio in regola con il tesseramento potrà sottoscrivere il contratto “Mutua salute” al costo annuo di euro 60,00.
+        </p>
+      
+        <p style="margin:12px 0 0">
+          <a href="https://www.somsigozzano.it/wp-content/uploads/2025/02/Regole-Mutua-Salute-Somsi-Gozzano.pdf" target="_blank" class="btn primary" style="display:inline-block; text-decoration:none;">Regole Mutua Salute SOMSI Gozzano</a>
+        </p>
+      </div>
+
+      <div class="prose" style="margin-top:16px">
+        <p>Sin dalla costituzione, scopo primario della SOMSI di Gozzano è stata la gestione della mutualità che, in passato, in assenza di altre forme di sostegno, si è concretizzata nell’aiuto ai soci in difficoltà attraverso l’erogazione di contributi economici in caso di malattia, infortunio, inabilità al lavoro, vecchiaia o morte.</p>
+        <p>I soci versavano una quota sociale mensile che andava a costituire una cassa comune dalla quale attingere in caso di necessità, ricevendo un sussidio.</p>
+       <p>Per approfondimenti puoi contattarci scrivendo a <a href="mailto:somsigozzano@gmail.com">somsigozzano@gmail.com</a>.</p>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section data-page="contatti">
+      <div class="sectionHead">
+        <div>
+          <h3 class="h2">Contatti</h3>
+          <div class="underline"></div>
+          <p class="muted" style="margin:10px 0 0">Scrivici o vieni a trovarci in sede.</p>
+        </div>
+      </div>
+
+      <div class="contactGrid">
+        <div class="contactCard">
+          <div class="contactLine">
+            <div class="icon">📍</div>
+            <div>
+              <div style="font-weight:950">Indirizzo</div>
+              <div class="muted">Piazza San Giuliano, 7 — 28024 Gozzano (NO)</div>
+            </div>
+          </div>
+          <div class="contactLine">
+            <div class="icon">✉️</div>
+            <div>
+              <div style="font-weight:950">Email</div>
+              <div class="muted"><a href="mailto:somsigozzano@gmail.com">somsigozzano@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contactLine">
+            <div class="icon">☎️</div>
+            <div>
+              <div style="font-weight:950">Telefono</div>
+              <div class="muted"><a href="tel:+393453619466">345 3619466</a></div>
+            </div>
+          </div>
+        
+        </div>
+
+        <div style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow: 0 10px 25px rgba(17,24,39,.06);">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.1861615727325!2d8.43519497656471!3d45.74741371449726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478672ab1b8d3ad1%3A0x793929f5010a0197!2sPiazza%20San%20Giuliano%2C%207%2C%2028024%20Gozzano%20NO!5e0!3m2!1sit!2sit!4v1769284698726!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+      </div>
+    </section>
+
+    <!-- NEWS (pagina dedicata) -->
+    <section data-page="news">
+      <div class="sectionHead">
+        <div>
+          <h3 class="h2">News</h3>
+          <div class="underline"></div>
+          <p class="muted" style="margin:10px 0 0">Tutte le news della SOMSI.</p>
+        </div>
+      </div>
+      <div id="newsAll" style="margin-top:12px"></div>
+    </section>
+
+    <!-- CORSI (pagina dedicata) -->
+    <section data-page="corsi">
+      <div class="sectionHead">
+        <div>
+          <h3 class="h2">Corsi</h3>
+          <div class="underline"></div>
+          <p class="muted" style="margin:10px 0 0">Tutti i corsi attivi e passati.</p>
+        </div>
+      </div>
+      <div id="corsiAll" style="margin-top:12px"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footGrid">
+        <div>
+          <h4 class="footTitle">SOMSI Gozzano</h4>
+          <p class="footP">Dal 1853, un punto di riferimento per mutualità, cultura e comunità nel centro storico di Gozzano.</p>
+        </div>
+        <div>
+          <h4 class="footTitle">Link rapidi</h4>
+          <ul class="footList">
+            <li><a href="#eventi" data-nav="eventi">Prossimi eventi</a></li>
+            <li><a href="#mutualita" data-nav="mutualita">Mutualità</a></li>
+            <li><a href="#chi-siamo" data-nav="chi-siamo">La nostra storia</a></li>
+          </ul>
+        </div>
+        <div>
+  <h4 class="footTitle">Contatti</h4>
+  <p class="footP">
+    Piazza San Giuliano, 7 — 28024 Gozzano (NO)<br>
+    Mail: <a href="mailto:somsigozzano@gmail.com">somsigozzano@gmail.com</a><br>
+    Tel: <a href="tel:+393453619466">345 3619466</a>
+  </p>
+</div>
+      </div>
+      <div class="copyright">© 2026 SOMSI Gozzano — ETS</div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ---- Utilities ----
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function formatDateIT(iso){
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('it-IT', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    }
+    function formatShortIT(iso){
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('it-IT', { day:'numeric', month:'long' });
+    }
+
+    // ---- Navigation / routing (single-page) ----
+    const pages = $$('[data-page]');
+    const navLinks = $$('[data-nav]');
+    function showPage(key){
+      pages.forEach(p => p.classList.toggle('active', p.dataset.page === key));
+      $$('.navlink').forEach(b => b.classList.toggle('active', b.dataset.nav === key));
+      // close mobile menu
+      const nav = $('#nav');
+      if(nav) nav.classList.remove('open');
+      const mb = $('#menuBtn');
+      if(mb) mb.setAttribute('aria-expanded','false');
+      // update hash
+      if(location.hash.replace('#','') !== key){
+        history.pushState(null,'', '#' + key);
+      }
+      window.scrollTo({top:0, behavior:'smooth'});
+
+      // Gestione Hero: nasconde tutto il blocco (inclusa la cornice bianca)
+      const hero = document.querySelector('.heroMedia');
+      if (hero) {
+        const heroContainer = hero.parentElement;
+        if (key === 'home') {
+          heroContainer.style.display = 'block';
+          heroContainer.style.marginBottom = '32px';
+        } else {
+          heroContainer.style.display = 'none';
+          heroContainer.style.marginBottom = '0';
+        }
+      }
+      // Gestione sidePanel: nasconde il riquadro info rapide fuori dalla Home
+      const sidePanel = document.querySelector('.sidePanel');
+      if (sidePanel) {
+        sidePanel.style.display = (key === 'home') ? 'block' : 'none';
+      }
+    }
+
+    navLinks.forEach(el => {
+      el.addEventListener('click', (e) => {
+        const key = el.dataset.nav;
+        if(key){
+          e.preventDefault();
+          showPage(key);
+        }
+      });
+    });
+    $$('[data-goto]').forEach(el => {
+      el.addEventListener('click', () => showPage(el.dataset.goto));
+    });
+
+    // Mobile menu
+    const menuBtn = $('#menuBtn');
+    if(menuBtn){
+      menuBtn.addEventListener('click', () => {
+        const nav = $('#nav');
+        const isOpen = nav.classList.toggle('open');
+        $('#menuBtn').setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    window.addEventListener('popstate', () => {
+      const key = (location.hash || '#home').replace('#','');
+      showPage(key);
+    });
+
+    // ---- Data loading ----
+    let EVENTS = [];
+    let NEWS = [];
+    let CORSI = [];
+
+    async function loadEvents(){
+      try{
+        const res = await fetch('events.json', {cache:'no-store'});
+        if(!res.ok) throw new Error('events.json non trovato');
+        const data = await res.json();
+        EVENTS = Array.isArray(data) ? data : (data.events || []);
+      }catch(err){
+        // fallback demo data
+        EVENTS = [
+          {"id":1,"title":"Concerto di Primavera","date":"2026-03-21","time":"21:00","location":"Salone d'Onore, Piazza San Giuliano","description":"Una serata dedicata alla musica per celebrare l'arrivo della nuova stagione.","image":"", "status":"upcoming"},
+          {"id":2,"title":"Corso di Informatica per Senior","date":"2026-02-10","time":"15:30","location":"Aula Istruzione","description":"Lezioni pratiche per imparare a usare smartphone e servizi online in modo sicuro.","image":"", "status":"upcoming"},
+          {"id":3,"title":"Assemblea Annuale Soci","date":"2026-02-02","time":"18:00","location":"Sede Sociale","description":"Incontro annuale per il bilancio e la programmazione delle attività 2026.","image":"", "status":"upcoming"}
+        ];
+        console.warn('Uso dati demo perché:', err);
+      }
+
+      // normalize
+      EVENTS = EVENTS.map((e, idx) => ({
+        id: e.id ?? (idx+1),
+        title: e.title ?? 'Evento',
+        date: e.date ?? '2026-01-01',
+        time: e.time ?? '',
+        location: e.location ?? '',
+        description: e.description ?? '',
+        image: e.image ?? '',
+        status: e.status ?? 'upcoming'
+      }));
+
+      // render
+      renderHome();
+      renderEventList('upcoming');
+      updateKpi();
+    }
+
+    async function loadNews(){
+      try{
+        const res = await fetch('news.json', {cache:'no-store'});
+        if(!res.ok) throw new Error('news.json non trovato');
+        const data = await res.json();
+        NEWS = Array.isArray(data) ? data : (data.news || []);
+      }catch(err){
+        NEWS = [
+          { id: "2026-04-01-inaugurazione", title: "Inaugurazione nuova sede", text: "Sabato 1 aprile abbiamo inaugurato la nuova sede con un rinfresco aperto a tutti i soci.", image: "images/inaugurazione_sede.jpg", date: "2026-04-01" },
+          { id: "2026-03-15-orari", title: "Nuovi orari di segreteria", text: "A partire dal 15 marzo la segreteria sarà aperta anche il giovedì dalle 17:00 alle 19:00.", image: "", date: "2026-03-15" }
+        ];
+        console.warn('Uso dati demo per news perché:', err);
+      }
+
+      // normalize
+      NEWS = NEWS.map((n, idx) => ({
+        id: n.id ?? ('news-' + (idx+1)),
+        title: n.title ?? 'News',
+        text: n.text ?? '',
+        image: n.image ?? '',
+        date: n.date ?? ''
+      }));
+
+      // render preview + full list
+      if(typeof renderNewsPreview === 'function') renderNewsPreview();
+      if(typeof renderNewsAll === 'function') renderNewsAll();
+    }
+
+    async function loadCorsi(){
+      try{
+        const res = await fetch('corsi.json', {cache:'no-store'});
+        if(!res.ok) throw new Error('corsi.json non trovato');
+        const data = await res.json();
+        CORSI = Array.isArray(data) ? data : (data.corsi || []);
+      }catch(err){
+        CORSI = [
+          { id: "2026-pittura-base", title: "Corso di Pittura (base)", description: "Laboratorio settimanale di pittura ad olio per principianti.", image: "images/corso_pittura.jpg", status: "attivo" },
+          { id: "2026-yoga-mattina", title: "Yoga del mattino", description: "Corso di yoga dolce il martedì e il giovedì mattina.", image: "", status: "attivo" }
+        ];
+        console.warn('Uso dati demo per corsi perché:', err);
+      }
+
+      // normalize
+      CORSI = CORSI.map((c, idx) => ({
+        id: c.id ?? ('corso-' + (idx+1)),
+        title: c.title ?? 'Corso',
+        description: c.description ?? '',
+        image: c.image ?? '',
+        status: c.status ?? 'attivo'
+      }));
+
+      if(typeof renderCorsiPreview === 'function') renderCorsiPreview();
+      if(typeof renderCorsiAll === 'function') renderCorsiAll();
+    }
+
+    // ---- Render: funzioni per visualizzare News e Corsi ----
+    async function fetchJSONNoCache(path){
+      try{
+        const res = await fetch(path + '?t=' + Date.now(), {cache:'no-store'});
+        if(!res.ok) return [];
+        return await res.json();
+      }catch(e){
+        console.warn('fetchJSON error', path, e);
+        return [];
+      }
+    }
+
+    /* PREVIEW News - immagine + titolo + testo breve, clicca per andare alla news */
+    function renderNewsPreviewFromArray(data){
+      const list = document.getElementById('newsList');
+      if(!list) return;
+      list.innerHTML = '';
+      const items = (data||[]).slice(0,4);
+      if(items.length===0){ list.innerHTML = '<div class="box"><em>Nessuna news al momento.</em></div>'; return; }
+      items.forEach(n=>{
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.style.marginBottom = '12px';
+        div.style.cursor = 'pointer';
+        div.style.display = 'flex';
+        div.style.alignItems = 'center';
+        div.style.gap = '10px';
+
+        const img = n.image ? `<img src="${n.image}" alt="${escapeHtml(n.title)}" style="width:64px; height:48px; object-fit:cover; border-radius:6px;">` : '';
+        div.innerHTML = `${img}<div><div style="font-weight:800">${escapeHtml(n.title)}</div><div style="font-size:13px; color:var(--muted); max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(truncate(n.text||'',110))}</div></div>`;
+
+        div.addEventListener('click', () => {
+          showPage('news');
+          setTimeout(() => {
+            const el = document.getElementById('news-' + n.id);
+            if(el) el.scrollIntoView({behavior:'smooth'});
+          }, 220);
+        });
+
+        list.appendChild(div);
+      });
+    }
+
+    /* PREVIEW Corsi - immagine + titolo + testo breve, clicca per andare al corso */
+function renderCorsiAllFromArray(data){
+  const container = document.getElementById('corsiAll');
+  if(!container) return;
+  container.innerHTML = '<h3 style="margin:0 0 12px">Corsi - Tutti</h3>';
+  if(!(data||[]).length){
+    container.innerHTML += '<div class="box"><em>Nessun corso disponibile.</em></div>';
+    return;
+  }
+  data.forEach(c=>{
+    const div = document.createElement('div');
+    div.id = 'corso-'+c.id;
+    div.style.marginBottom = '24px';
+    div.innerHTML = `
+      <div class="card" style="padding:20px; max-width:700px; margin:auto;">
+        <h2 style="margin-top:0; font-weight:900;">${escapeHtml(c.title)}</h2>
+        ${c.image ? `<img src="${escapeAttr(c.image)}" alt="${escapeHtml(c.title)}" style="width:100%; border-radius:12px; margin-bottom:16px;">` : ''}
+        <p style="margin-top:0;">${escapeHtml(c.description)}</p>
+        <div style="color:var(--muted); font-size:13px; margin-top:8px;">${escapeHtml(c.status || '')}</div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+    /* LISTE COMPLETE (dettagli) */
+function renderNewsAllFromArray(data){
+  const container = document.getElementById('newsAll');
+  if(!container) return;
+  container.innerHTML = '<h3 style="margin:0 0 12px">News - Tutte</h3>';
+  if(!(data||[]).length){
+    container.innerHTML += '<div class="box"><em>Nessuna news disponibile.</em></div>';
+    return;
+  }
+  data.forEach(n=>{
+    const div = document.createElement('div');
+    div.id = 'news-'+n.id;
+    div.style.marginBottom = '24px';
+    div.innerHTML = `
+      <div class="card" style="padding:20px; max-width:700px; margin:auto;">
+        <h2 style="margin-top:0; font-weight:900;">${escapeHtml(n.title)}</h2>
+        <div style="font-size:13px; color:var(--muted); margin-bottom:12px;">${escapeHtml(n.date||'')}</div>
+        ${n.image ? `<img src="${escapeAttr(n.image)}" alt="${escapeHtml(n.title)}" style="width:100%; border-radius:12px; margin-bottom:16px;">` : ''}
+        <p style="margin-top:0;">${escapeHtml(n.text)}</p>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+  
+
+    function renderCorsiAllFromArray(data){
+      const container = document.getElementById('corsiAll');
+      if(!container) return;
+      container.innerHTML = '<h3 style="margin:18px 0 12px">Corsi - Tutti</h3>';
+      const items = (data||[]);
+      if(!items.length){ container.innerHTML += '<div class="box"><em>Nessun corso disponibile.</em></div>'; return; }
+      items.forEach(c=>{
+        const div = document.createElement('div');
+        div.id = 'corso-'+c.id;
+        div.style.marginBottom = '12px';
+        div.innerHTML = `<div class="card" style="padding:12px"><div style="font-weight:900">${escapeHtml(c.title)}</div><div style="font-size:13px;color:var(--muted);margin-top:6px">${escapeHtml(c.status||'')}</div><div style="margin-top:8px">${escapeHtml(c.description)}</div></div>`;
+        container.appendChild(div);
+      });
+    }
+
+    /* Funzioni invocate da loadNews/loadCorsi */
+    function renderNewsPreview(){ renderNewsPreviewFromArray(NEWS); }
+    function renderNewsAll(){ renderNewsAllFromArray(NEWS); }
+    function renderCorsiPreview(){ renderCorsiPreviewFromArray(CORSI); }
+    function renderCorsiAll(){ renderCorsiAllFromArray(CORSI); }
+
+    // ---- Init: avvia tutti i loader in sequenza ----
+    async function init(){
+      await loadEvents();   // carica e renderizza eventi
+      await loadNews();     // carica e renderizza news
+      await loadCorsi();    // carica e renderizza corsi
+    }
+
+    // Avvia init quando la pagina è pronta
+    document.addEventListener('DOMContentLoaded', init);
+
+    function updateKpi(){
+      const now = new Date();
+      const upcoming = EVENTS.filter(e => new Date(e.date+'T00:00:00') >= new Date(now.toDateString()));
+      const el = $('#kpiUpcoming');
+      if(el) el.textContent = upcoming.length;
+    }
+
+    function eventCardHTML(e){
+      const date = formatShortIT(e.date);
+      return `
+        <article class="card" role="article" aria-label="${escapeHtml(e.title)}">
+          <div class="cardImg" style="${e.image ? `background-image:url('${escapeAttr(e.image)}');` : ''}"></div>
+          <div class="cardBody">
+            <div class="date">${date}</div>
+            <div class="cardTitle">${escapeHtml(e.title)}</div>
+            <p class="cardDesc">${escapeHtml(truncate(e.description, 110))}</p>
+            <div class="meta">📍 ${escapeHtml(e.location || '—')}</div>
+          </div>
+        </article>
+      `;
+    }
+
+   function renderHome(){
+  const sorted = [...EVENTS].sort((a,b) => a.date.localeCompare(b.date));
+  const now = new Date();
+  const upcoming = sorted.filter(e => new Date(e.date+'T00:00:00') >= new Date(now.toDateString()));
+  const top = upcoming.slice(0,6);
+  const homeCardsEl = $('#homeCards');
+  if(!homeCardsEl) return;
+
+  // genera le card con attribute data-id per il click
+  homeCardsEl.innerHTML = top.map(e => `
+    <article class="card home-event" data-id="${e.id}" role="button" aria-label="Apri evento ${escapeHtml(e.title)}" style="cursor:pointer; margin-bottom:12px;">
+      <div class="cardImg" style="${e.image ? `background-image:url('${escapeAttr(e.image)}');` : ''}"></div>
+      <div class="cardBody">
+        <div class="date">${formatShortIT(e.date)}</div>
+        <div class="cardTitle">${escapeHtml(e.title)}</div>
+        <p class="cardDesc">${escapeHtml(truncate(e.description, 110))}</p>
+        <div class="meta">📍 ${escapeHtml(e.location || '—')}</div>
+      </div>
+    </article>
+  `).join('');
+
+  // Attacca i click handler alle card appena create
+  $$('.home-event').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.id;
+      // Apri la pagina Eventi
+      showPage('eventi');
+      // Aggiorna l'URL hash (opzionale)
+      history.replaceState(null, '', '#eventi');
+      // Assicurati che la lista Eventi sia renderizzata (se necessario)
+      renderEventList(window.currentEventFilter || 'upcoming');
+      // Scorri verso l'elemento corrispondente dopo un piccolo ritardo
+      setTimeout(() => {
+        const el = document.getElementById('event-' + id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 180);
+    });
+  });
+}
+
+function renderEventList(filter){
+  const now = new Date();
+  const isUpcoming = (e) => new Date(e.date+'T00:00:00') >= new Date(now.toDateString());
+  let list = [...EVENTS].sort((a,b) => a.date.localeCompare(b.date));
+  if(filter === 'upcoming') list = list.filter(isUpcoming);
+  if(filter === 'past') list = list.filter(e => !isUpcoming(e)).sort((a,b)=> b.date.localeCompare(a.date));
+
+  // salva filtro corrente
+  window.currentEventFilter = filter;
+
+  if(list.length === 0){
+    $('#eventList').innerHTML = `<div class="box"><strong>Nessun evento da mostrare.</strong><div class="muted" style="margin-top:6px">Aggiungi eventi in <code>events.json</code>.</div></div>`;
+    return;
+  }
+
+  $('#eventList').innerHTML = list.map(e => {
+    const badge = filter === 'past' ? 'Passato' : (isUpcoming(e) ? 'Prossimo' : 'Passato');
+    const img = e.image ? `<img src="${escapeAttr(e.image)}" alt="${escapeAttr(e.title)}"/>` : `<img src="data:image/svg+xml;utf8,${encodeURIComponent(svgPlaceholder(e.title))}" alt="${escapeAttr(e.title)}"/>`;
+    return `
+      <article id="event-${e.id}" class="eventRow" tabindex="0" aria-labelledby="title-event-${e.id}">
+        <div class="eventImg">
+          ${img}
+          <div class="badge">${badge}</div>
+        </div>
+        <div class="eventBody">
+          <div class="eventMeta">📅 ${formatDateIT(e.date)} ${e.time ? ` • ⏰ ${escapeHtml(e.time)}` : ''} ${e.location ? ` • 📍 ${escapeHtml(e.location)}` : ''}</div>
+          <div id="title-event-${e.id}" class="eventTitle">${escapeHtml(e.title)}</div>
+          <p>${escapeHtml(e.description)}</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+    function truncate(s, n){
+      s = (s||'').trim();
+      if(s.length <= n) return s;
+      return s.slice(0, n-1).trimEnd() + '…';
+    }
+    function escapeHtml(str){
+      return (str||'').replace(/[&<>"]+/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m));
+    }
+    function escapeAttr(str){
+      return (str||'').replace(/'/g, '%27').replace(/"/g, '%22');
+    }
+    function svgPlaceholder(title){
+      const t = (title||'Foto evento').slice(0,26);
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" font-family="Arial" font-size="56" fill="#9ca3af" text-anchor="middle">${t}</text></svg>`;
+    }
+
+    // Filter buttons
+    $$('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        $$('.chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderEventList(btn.dataset.filter);
+      });
+    });
+
+    // Initial route
+    const initial = (location.hash || '#home').replace('#','');
+    showPage(['home','eventi','chi-siamo','mutualita','contatti','news','corsi'].includes(initial) ? initial : 'home');
+
+  // NOTA: init() viene eseguita su DOMContentLoaded
+  </script>
+</body>
+</html>
