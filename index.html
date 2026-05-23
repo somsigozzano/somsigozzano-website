@@ -182,6 +182,26 @@
       background:linear-gradient(135deg, rgba(197,138,23,.20), rgba(0,0,0,.06)),
                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="%23f3f4f6"/><text x="50%" y="50%" font-family="Arial" font-size="52" fill="%239ca3af" text-anchor="middle">Foto evento</text></svg>') center/cover;
     }
+
+
+    /* Forza dimensione e crop per le anteprime nella Home */
+.home-event .cardImg {
+  height: 170px !important;         /* regola l'altezza desiderata */
+  min-height: 120px;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  display: block;
+  overflow: hidden;
+}
+
+/* Se per qualche motivo la Home usa <img> al posto di background-image */
+.home-event .cardImg img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
     .cardBody{padding:16px}
     .date{
       font-size:12px;
