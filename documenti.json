@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Convenzione ANPAS Cusio Sud Ovest",
+    "file": "PDF/anpas_convenzione.pdf",
+    "description": "Convenzione con ANPAS per collaborazioni locali."
+  },
+  {
+    "title": "Regolamento Mutualità 2023",
+    "file": "PDF/regolamento_mutualita_2023.pdf",
+    "description": "Regole e modalità del servizio di mutualità."
+  },
+  {
+    "title": "Bilancio SOMSI 2025",
+    "file": "PDF/bilancio_somsi_2025.pdf",
+    "description": "Bilancio sociale e finanziario 2025."
+  },
+  {
+    "title": "Esempio: nome del nuovo documento",
+    "file": "PDF/nome_del_nuovo_documento.pdf",
+    "description": "Breve descrizione del documento."
+  }
+]
