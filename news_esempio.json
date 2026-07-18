@@ -1,10 +1,3 @@
-ESEMPIO-NON-CANCELLARE: COPIA QUESTO BLOCCO PER AGGIUNGERE NEWS,
-    "id": "Data-titolo-breve"
-    "title": "TITOLO: Scrivi qui il titolo",
-    "text": "TESTO: Scrivi qui cosa succede",
-    "image": "images/esempio.jpg",
-    "date": "2026-01-01"
-
 [
   {
     "id": "2026-04-01-inaugurazione",
@@ -28,3 +21,9 @@ ESEMPIO-NON-CANCELLARE: COPIA QUESTO BLOCCO PER AGGIUNGERE NEWS,
     "date": "2026-02-10"
   }
 ]
+ESEMPIO-NON-CANCELLARE: COPIA QUESTO BLOCCO PER AGGIUNGERE NEWS,
+    "id": "Data-titolo-breve"
+    "title": "TITOLO: Scrivi qui il titolo",
+    "text": "TESTO: Scrivi qui cosa succede",
+    "image": "images/esempio.jpg",
+    "date": "2026-01-01"
