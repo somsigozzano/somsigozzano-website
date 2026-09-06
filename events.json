@@ -118,5 +118,36 @@
   "category": "Cultura",
   "description": "Uno spettacolo per concludere la nostra stagione teatrale insieme alla Compagnia Teatro 4",
   "image": "images/teatro_giugno.jpeg"
-   }
+   },
+  {
+  "id": 13,
+  "title": "Torna il gruppo di cammino Somsi",
+  "date": "2026-09-13",
+  "time": "15:00",
+  "location": "Lido di Gozzano",
+  "category": "Benessere",
+  "description": "Una camminata alla scoperta della via dei Canneti",
+  "image": "images/camminatasomsi.jpeg"
+   },
+   {
+  "id": 14,
+  "title": "Il Torino Jazz Festival approda alla Somsi",
+  "date": "2026-09-19",
+  "time": "21:00",
+  "location": "Piazza San Giuliano",
+  "category": "Cultura",
+  "description": "Un fantastico tributo alla musica di Pino Daniele con Felice Reggio & Hammond Trio",
+  "image": "images/torinojazzfestival.jpeg"
+   },
+   {
+  "id": 15,
+  "title": "Corso di disostruzione delle vie aeree",
+  "date": "2026-09-24",
+  "time": "21:00",
+  "location": "Piazza San Giuliano",
+  "category": "Benessere",
+  "description": "Insieme ad Anpas San Maurizio dedicheremo una serata ad imparare le manovre di disotruzione delle vie aeree",
+  "image": "images/corsodisostruzione.jpeg"
+   },
 ]
+  
