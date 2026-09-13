@@ -148,6 +148,16 @@
   "category": "Benessere",
   "description": "Insieme ad Anpas San Maurizio dedicheremo una serata ad imparare le manovre di disotruzione delle vie aeree",
   "image": "images/corsodisostruzione.jpeg"
+   },
+   {
+  "id": 16,
+  "title": "Festa di inaugurazione stagione 2026/2027",
+  "date": "2026-09-25",
+  "time": "19:00",
+  "location": "Piazza San Giuliano",
+  "category": "Sociale",
+  "description": "Una apericena per iniziare al meglio la nostra stagione e presentare le nostre attività",
+  "image": "images/festasettembre.jpeg"
    }
 ]
   
