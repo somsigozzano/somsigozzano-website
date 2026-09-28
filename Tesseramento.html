@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sostienici - SOMSI Gozzano</title>
+  <title>Sostienici - SOMSI Gozzano (Bozza)</title>
   <style>
     :root{
       --bg:#ffffff;
@@ -227,7 +227,7 @@
 
     <div class="hero">
       <div class="hero-inner">
-        <span class="badge-test"><span class="dot"></span>Pagina di prova — non ancora online</span>
+        <span class="badge-test"><span class="dot"></span>Pagina di prova — Anteprima</span>
         <div class="eyebrow">Società Operaia di Mutuo Soccorso ed Istruzione — Gozzano</div>
         <h1>Come sostenere la SOMSI</h1>
         <p>Scegli se diventare socio versando la quota annuale, oppure offrire una donazione libera per sostenere la mutualità, la cultura e le nostre borse di studio.</p>
@@ -268,10 +268,12 @@
         </button>
       </div>
 
+      <div class="causale-highlight" id="tess-method-info" style="display:none;"></div>
+
       <div class="form-panel" id="tess-form-panel">
         <div class="form-panel-inner">
           <h3>Passo 2 — I tuoi dati per il libro soci</h3>
-          <p class="hint">Come associazione ETS siamo tenuti per legge a registrare i nominativi dei soci. La tessera sarà attiva all'avvenuto accredito.</p>
+          <p class="hint">Come associazione ETS siamo tenuti per legge a registrare i nominativi dei soci. Compila il modulo qui sotto: <strong>al termine comparirà il link o le coordinate per pagare</strong> con il metodo scelto. La tessera sarà attiva all'avvenuto accredito.</p>
 
           <form id="tessForm">
             <div class="grid2">
@@ -389,6 +391,17 @@
       ['paypal','satispay','bonifico'].forEach(m=>{
         document.getElementById('tess-'+m).classList.toggle('active', m===method);
       });
+
+      const labels = {
+        paypal: 'PayPal / Carte',
+        satispay: 'Satispay',
+        bonifico: 'Bonifico bancario'
+      };
+      const info = document.getElementById('tess-method-info');
+      info.innerHTML = '<strong>Hai scelto: ' + labels[method] + '</strong>' +
+        'Ora compila i tuoi dati qui sotto. Solo dopo l\'invio ti mostreremo il link (o le coordinate) per completare il pagamento di 20 €.';
+      info.style.display = 'block';
+
       document.getElementById('tess-form-panel').classList.add('show');
       document.getElementById('tess-success').classList.remove('show');
     }
