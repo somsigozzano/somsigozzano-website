@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sostienici - SOMSI Gozzano</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111827;
+      --muted:#6b7280;
+      --soft:#f8f5ee;
+      --card:#ffffff;
+      --line:#e9e3d6;
+      --accent:#c58a17;
+      --accent2:#8a5a00;
+      --accent-soft:#fbf1dd;
+      --ok:#065f46;
+      --shadow: 0 10px 30px rgba(17,24,39,.08);
+      --radius: 20px;
+      --radius2: 14px;
+      --max: 880px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--soft);
+      color:var(--ink);
+      font-family:var(--font);
+      line-height:1.6;
+      padding:28px 16px 60px;
+    }
+    .wrap{max-width:var(--max); margin:0 auto}
+
+    .hero{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+      padding:32px 30px;
+      margin-bottom:26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; top:-40px; right:-40px;
+      width:160px; height:160px; border-radius:50%;
+      background:var(--accent-soft);
+      z-index:0;
+    }
+    .hero-inner{position:relative; z-index:1}
+    .eyebrow{
+      font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--accent2); font-weight:700; margin:0 0 8px;
+    }
+    .hero h1{
+      font-family:var(--serif); font-size:clamp(26px,4vw,34px);
+      margin:0 0 10px; color:var(--ink);
+    }
+    .hero p{margin:0; color:var(--muted); font-size:15px; max-width:60ch}
+
+    .badge-test{
+      display:inline-flex; align-items:center; gap:6px;
+      background:#fff; border:1px solid var(--line);
+      padding:5px 12px; border-radius:999px;
+      font-size:11px; text-transform:uppercase; letter-spacing:.06em;
+      color:var(--muted); font-weight:600; margin-bottom:14px;
+    }
+    .badge-test .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      margin-bottom:24px;
+    }
+
+    .section-head{
+      display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;
+      justify-content:space-between; border-bottom:1px solid var(--line);
+      padding-bottom:18px; margin-bottom:20px;
+    }
+    .tag{
+      display:inline-block; background:var(--accent); color:#fff;
+      font-size:11px; font-weight:700; text-transform:uppercase;
+      letter-spacing:.05em; padding:4px 12px; border-radius:999px;
+      margin-bottom:10px;
+    }
+    .tag.alt{background:#3f3a34}
+    .section-head h2{
+      font-family:var(--serif); font-size:22px; margin:0 0 6px; color:var(--ink);
+    }
+    .section-head p{margin:0; font-size:13.5px; color:var(--muted); max-width:48ch}
+    .price-pill{
+      background:var(--accent-soft); border:1px solid #f0dfae;
+      border-radius:var(--radius2); padding:12px 18px; text-align:right; min-width:130px;
+    }
+    .price-pill .label{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--accent2); font-weight:700}
+    .price-pill .amount{font-size:26px; font-weight:800; color:var(--accent2)}
+    .price-pill .sub{font-size:11px; color:var(--muted)}
+
+    .step-label{
+      font-size:12px; font-weight:700; text-transform:uppercase;
+      letter-spacing:.05em; color:var(--accent2); margin-bottom:10px;
+    }
+
+    .opt-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    @media(max-width:700px){ .opt-grid{grid-template-columns:1fr} }
+
+    .opt-btn{
+      text-align:left; background:var(--soft); border:2px solid var(--line);
+      border-radius:var(--radius2); padding:16px; cursor:pointer;
+      transition:all .15s ease; font-family:inherit;
+    }
+    .opt-btn:hover{border-color:#dcc98a}
+    .opt-btn.active{border-color:var(--accent); background:var(--accent-soft)}
+    .opt-btn .opt-tag{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:700; display:block; margin-bottom:4px}
+    .opt-btn .opt-title{font-size:15px; font-weight:700; color:var(--ink)}
+    .opt-btn .opt-sub{font-size:12.5px; color:var(--muted); margin-top:3px}
+
+    .form-panel{
+      margin-top:22px; padding-top:22px; border-top:1px dashed var(--line);
+      display:none;
+    }
+    .form-panel.show{display:block}
+    .form-panel-inner{
+      background:var(--soft); border-radius:var(--radius2); padding:22px;
+      border:1px solid var(--line);
+    }
+    .form-panel-inner h3{margin:0 0 4px; font-size:16px; font-family:var(--serif)}
+    .form-panel-inner p.hint{margin:0 0 16px; font-size:12.5px; color:var(--muted)}
+
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    @media(max-width:600px){ .grid2{grid-template-columns:1fr} }
+
+    .field label{
+      display:block; font-size:12px; font-weight:700; text-transform:uppercase;
+      letter-spacing:.03em; color:#5a5346; margin-bottom:6px;
+    }
+    .field input{
+      width:100%; padding:11px 14px; border-radius:12px;
+      border:1px solid var(--line); font-size:14px; font-family:inherit;
+      background:#fff;
+    }
+    .field input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+    .field{margin-bottom:14px}
+
+    .btn-primary{
+      width:100%; background:var(--accent); color:#fff; border:none;
+      padding:14px 20px; border-radius:999px; font-size:14px; font-weight:700;
+      letter-spacing:.02em; cursor:pointer; margin-top:6px;
+      transition:background .15s ease;
+    }
+    .btn-primary:hover{background:var(--accent2)}
+
+    .success-box{
+      display:none; margin-top:18px; padding:18px 20px;
+      background:#ecfdf5; border:1px solid #a7f3d0; border-radius:var(--radius2);
+      color:#064e3b; font-size:13.5px;
+    }
+    .success-box.show{display:block}
+
+    .pay-action{margin-top:14px}
+    .pay-btn{
+      display:inline-block; text-decoration:none; padding:11px 20px;
+      border-radius:999px; font-size:13px; font-weight:700; color:#fff;
+    }
+    .pay-paypal{background:#0070ba}
+    .pay-satispay{background:#ea1d25}
+
+    .bonifico-guide{
+      background:#ffffff;
+      border:1px solid #d1fae5;
+      border-radius:var(--radius2);
+      padding:16px;
+      margin-top:10px;
+    }
+    .iban-box{
+      font-family:ui-monospace, monospace; font-size:14px; font-weight:700;
+      background:#f8f5ee; padding:10px 14px; border:1px solid var(--line);
+      border-radius:10px; display:inline-block; margin-bottom:10px;
+      letter-spacing:.04em; color:#111827;
+    }
+    .copy-btn{
+      display:inline-block; background:#efe9db; border:none; padding:8px 16px;
+      border-radius:999px; font-size:12px; font-weight:700; color:#3f3a34;
+      cursor:pointer; margin-left:8px; vertical-align:middle;
+    }
+    .copy-btn:hover{background:#e3dcc9}
+
+    .causale-highlight{
+      background:#fef3c7;
+      border-left:4px solid var(--accent);
+      padding:12px 14px;
+      border-radius:0 10px 10px 0;
+      margin:12px 0 8px;
+    }
+    .causale-highlight strong{color:#78350f; display:block; font-size:12px; text-transform:uppercase; letter-spacing:.03em; margin-bottom:4px}
+    .causale-highlight code{font-family:ui-monospace, monospace; font-size:13.5px; font-weight:800; color:#111827; background:#fff; padding:3px 8px; border-radius:6px; border:1px solid #fde68a}
+
+    .note{
+      margin-top:18px; padding:14px 18px; background:var(--soft);
+      border-left:3px solid var(--accent); border-radius:0 12px 12px 0;
+      font-size:13px; color:#4b4638;
+    }
+
+    .donation-detail{
+      display:none; margin-top:18px; padding:20px;
+      background:var(--soft); border-radius:var(--radius2); border:1px solid var(--line);
+    }
+    .donation-detail.show{display:block}
+    .donation-detail h4{margin:0 0 6px; font-size:14.5px; font-family:var(--serif)}
+    .donation-detail p{margin:0 0 12px; font-size:13px; color:var(--muted)}
+
+    footer{
+      text-align:center; font-size:12.5px; color:var(--muted); margin-top:8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="badge-test"><span class="dot"></span>Pagina di prova — non ancora online</span>
+        <div class="eyebrow">Società Operaia di Mutuo Soccorso ed Istruzione — Gozzano</div>
+        <h1>Come sostenere la SOMSI</h1>
+        <p>Scegli se diventare socio versando la quota annuale, oppure offrire una donazione libera per sostenere la mutualità, la cultura e le nostre borse di studio.</p>
+      </div>
+    </div>
+
+    <!-- TESSERAMENTO -->
+    <div class="card">
+      <div class="section-head">
+        <div>
+          <span class="tag">Sezione 1</span>
+          <h2>Diventa socio (Tesseramento)</h2>
+          <p>Partecipi alle assemblee, ai corsi e alle attività, e sostieni i progetti di mutualità e le borse di studio.</p>
+        </div>
+        <div class="price-pill">
+          <div class="label">Quota annuale</div>
+          <div class="amount">20 €</div>
+          <div class="sub">valida un anno solare</div>
+        </div>
+      </div>
+
+      <div class="step-label">Passo 1 — Scegli come vuoi pagare i 20 €</div>
+      <div class="opt-grid">
+        <button type="button" class="opt-btn" id="tess-paypal" onclick="selectTess('paypal')">
+          <span class="opt-tag">Opzione A</span>
+          <span class="opt-title">PayPal / Carte</span>
+          <span class="opt-sub">Con conto o carta di credito</span>
+        </button>
+        <button type="button" class="opt-btn" id="tess-satispay" onclick="selectTess('satispay')">
+          <span class="opt-tag">Opzione B</span>
+          <span class="opt-title">Satispay</span>
+          <span class="opt-sub">Direttamente da smartphone</span>
+        </button>
+        <button type="button" class="opt-btn" id="tess-bonifico" onclick="selectTess('bonifico')">
+          <span class="opt-tag">Opzione C</span>
+          <span class="opt-title">Bonifico bancario</span>
+          <span class="opt-sub">Home banking o sportello</span>
+        </button>
+      </div>
+
+      <div class="form-panel" id="tess-form-panel">
+        <div class="form-panel-inner">
+          <h3>Passo 2 — I tuoi dati per il libro soci</h3>
+          <p class="hint">Come associazione ETS siamo tenuti per legge a registrare i nominativi dei soci. La tessera sarà attiva all'avvenuto accredito.</p>
+
+          <form id="tessForm">
+            <div class="grid2">
+              <div class="field">
+                <label>Nome *</label>
+                <input type="text" id="t_nome" required placeholder="Mario">
+              </div>
+              <div class="field">
+                <label>Cognome *</label>
+                <input type="text" id="t_cognome" required placeholder="Rossi">
+              </div>
+            </div>
+            <div class="grid2">
+              <div class="field">
+                <label>Codice Fiscale *</label>
+                <input type="text" id="t_cf" required maxlength="16" placeholder="RSSMRA80A01E177X" style="text-transform:uppercase">
+              </div>
+              <div class="field">
+                <label>Data di nascita *</label>
+                <input type="date" id="t_data" required>
+              </div>
+            </div>
+            <div class="grid2">
+              <div class="field">
+                <label>Comune di residenza *</label>
+                <input type="text" id="t_comune" required placeholder="Es. Gozzano">
+              </div>
+              <div class="field">
+                <label>Telefono *</label>
+                <input type="tel" id="t_tel" required placeholder="340 1234567">
+              </div>
+            </div>
+            <div class="field">
+              <label>Email *</label>
+              <input type="email" id="t_email" required placeholder="nome.cognome@esempio.it">
+            </div>
+            <button type="submit" class="btn-primary">Invia dati anagrafici e vedi istruzioni di pagamento</button>
+          </form>
+
+          <div class="success-box" id="tess-success">
+            <strong>Dati inoltrati alla segreteria!</strong>
+            <p style="margin:4px 0 10px; font-size:12.5px; opacity:.9;">
+              I tuoi dati sono stati registrati come <em>"in attesa di accredito"</em>. Ora effettua il versamento di 20 €:
+            </p>
+            <div class="pay-action" id="tess-pay-action"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Preferisci farlo di persona?</strong> Vieni in sede in Piazza San Giuliano 7 a Gozzano: compiliamo insieme il modulo e ti consegniamo subito la tessera.
+      </div>
+    </div>
+
+    <!-- DONAZIONI -->
+    <div class="card">
+      <div class="section-head" style="border-bottom:1px solid var(--line); margin-bottom:20px;">
+        <div>
+          <span class="tag alt">Sezione 2</span>
+          <h2>Offri una donazione libera</h2>
+          <p>Nessun modulo richiesto: scegli il metodo che preferisci e sostieni subito le nostre attività.</p>
+        </div>
+      </div>
+
+      <div class="opt-grid">
+        <button type="button" class="opt-btn" id="don-paypal" onclick="selectDon('paypal')">
+          <span class="opt-tag">Subito online</span>
+          <span class="opt-title">PayPal / Carte</span>
+          <span class="opt-sub">Importo a tua scelta</span>
+        </button>
+        <button type="button" class="opt-btn" id="don-satispay" onclick="selectDon('satispay')">
+          <span class="opt-tag">Da smartphone</span>
+          <span class="opt-title">Satispay</span>
+          <span class="opt-sub">Cerca "SOMSI Gozzano"</span>
+        </button>
+        <button type="button" class="opt-btn" id="don-bonifico" onclick="selectDon('bonifico')">
+          <span class="opt-tag">Bancario</span>
+          <span class="opt-title">Bonifico</span>
+          <span class="opt-sub">Vedi le coordinate IBAN</span>
+        </button>
+      </div>
+
+      <div class="donation-detail" id="don-paypal-detail">
+        <h4>Donazione sicura con PayPal o carta</h4>
+        <p>Verrai reindirizzato sul circuito protetto di PayPal, dove potrai scegliere liberamente l'importo.</p>
+        <a href="https://www.paypal.me/somsigozzano" target="_blank" rel="noopener noreferrer" class="pay-btn pay-paypal">Procedi su PayPal</a>
+      </div>
+      <div class="donation-detail" id="don-satispay-detail">
+        <h4>Donazione con Satispay</h4>
+        <p>Apri l'app sul tuo smartphone, cerca <strong>"SOMSI Gozzano"</strong> e invia l'importo che desideri.</p>
+        <a href="https://www.satispay.com" target="_blank" rel="noopener noreferrer" class="pay-btn pay-satispay">Apri Satispay</a>
+      </div>
+      <div class="donation-detail" id="don-bonifico-detail">
+        <h4>Coordinate per il bonifico</h4>
+        <p>Intestato a: <strong>Società Operaia di Mutuo Soccorso ed Istruzione di Gozzano ETS</strong></p>
+        <div>
+          <div class="iban-box" id="don-iban">IT00X0000000000000000000000</div>
+          <button type="button" class="copy-btn" onclick="copyIban('don-iban', this)">Copia IBAN</button>
+        </div>
+        <div class="causale-highlight">
+          <strong>Causale consigliata:</strong>
+          <code>Erogazione liberale / Donazione</code>
+        </div>
+      </div>
+    </div>
+
+    <footer>Società Operaia di Mutuo Soccorso ed Istruzione di Gozzano ETS — Piazza San Giuliano 7, Gozzano (NO)</footer>
+  </div>
+
+  <script>
+    let tessMethod = null;
+
+    function selectTess(method){
+      tessMethod = method;
+      ['paypal','satispay','bonifico'].forEach(m=>{
+        document.getElementById('tess-'+m).classList.toggle('active', m===method);
+      });
+      document.getElementById('tess-form-panel').classList.add('show');
+      document.getElementById('tess-success').classList.remove('show');
+    }
+
+    document.getElementById('tessForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const nome = document.getElementById('t_nome').value.trim();
+      const cognome = document.getElementById('t_cognome').value.trim();
+      const cf = document.getElementById('t_cf').value.trim().toUpperCase();
+      const data = document.getElementById('t_data').value;
+      const comune = document.getElementById('t_comune').value.trim();
+      const tel = document.getElementById('t_tel').value.trim();
+      const email = document.getElementById('t_email').value.trim();
+
+      const subject = encodeURIComponent("Tesseramento SOMSI: " + nome + " " + cognome);
+      const body = encodeURIComponent(
+        "Gentile Segreteria SOMSI Gozzano,\n\n" +
+        "Invio i miei dati per il tesseramento annuale (20 €):\n" +
+        "- Nome: " + nome + "\n- Cognome: " + cognome + "\n- Codice Fiscale: " + cf +
+        "\n- Data di nascita: " + data + "\n- Comune: " + comune + "\n- Telefono: " + tel +
+        "\n- Email: " + email + "\n- Metodo scelto: " + tessMethod +
+        "\n\nSaluti,\n" + nome + " " + cognome
+      );
+
+      const actionBox = document.getElementById('tess-pay-action');
+      let html = '';
+      if(tessMethod === 'paypal'){
+        html = '<a href="https://www.paypal.me/somsigozzano" target="_blank" rel="noopener noreferrer" class="pay-btn pay-paypal">Paga 20 € con PayPal</a>' +
+               '<div style="font-size:12px; color:#065f46; margin-top:8px;">Verificheremo l\'accredito associandolo all\'indirizzo email indicato.</div>';
+      } else if(tessMethod === 'satispay'){
+        html = '<a href="https://www.satispay.com" target="_blank" rel="noopener noreferrer" class="pay-btn pay-satispay">Apri Satispay e invia 20 €</a>' +
+               '<div style="font-size:12px; color:#065f46; margin-top:8px;">Cerca <strong>"SOMSI Gozzano"</strong> e conferma l\'invio di 20 €.</div>';
+      } else if(tessMethod === 'bonifico'){
+        const causaleGenerata = "Tesseramento " + nome + " " + cognome + " - " + cf;
+        html = '<div class="bonifico-guide">' +
+                 '<div style="font-size:12.5px; font-weight:700; color:#111827; margin-bottom:8px;">Coordinate Bancarie SOMSI:</div>' +
+                 '<div>' +
+                   '<span class="iban-box" id="tess-iban">IT00X0000000000000000000000</span>' +
+                   '<button type="button" class="copy-btn" onclick="copyIban(\'tess-iban\', this)">Copia IBAN</button>' +
+                 '</div>' +
+                 '<div class="causale-highlight">' +
+                   '<strong>⚠️ IMPORTANTE — Inserisci esattamente questa Causale:</strong>' +
+                   '<code id="tess-causale-text">' + causaleGenerata + '</code>' +
+                   '<button type="button" class="copy-btn" style="margin-left:8px;" onclick="copyIban(\'tess-causale-text\', this)">Copia Causale</button>' +
+                   '<p style="margin:6px 0 0; font-size:11.5px; color:#92400e;">Senza questa causale la segreteria non potrà abbinare il bonifico alla tua scheda socio!</p>' +
+                 '</div>' +
+               '</div>';
+      }
+      actionBox.innerHTML = html;
+      document.getElementById('tess-success').classList.add('show');
+
+      window.location.href = "mailto:somsigozzano@gmail.com?subject=" + subject + "&body=" + body;
+    });
+
+    function selectDon(method){
+      ['paypal','satispay','bonifico'].forEach(m=>{
+        document.getElementById('don-'+m).classList.toggle('active', m===method);
+        document.getElementById('don-'+m+'-detail').classList.toggle('show', m===method);
+      });
+    }
+
+    function copyIban(id, btn){
+      const text = document.getElementById(id).innerText.trim();
+      navigator.clipboard.writeText(text).then(()=>{
+        const original = btn.innerText;
+        btn.innerText = 'Copiato!';
+        setTimeout(()=>{ btn.innerText = original; }, 2200);
+      });
+    }
+  </script>
+</body>
+</html>
